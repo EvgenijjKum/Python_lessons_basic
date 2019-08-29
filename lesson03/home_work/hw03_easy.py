@@ -5,7 +5,23 @@
 # Для решения задачи не используйте встроенные функции и функции из модуля math.
 
 def my_round(number, ndigits):
-    pass
+    my_number = str(number)
+    pos = my_number.find('.') + ndigits +1
+    znak = int(my_number[pos]) #нашли знак для отбрасывания
+    if znak >=5:
+        mod = 1
+    else:
+        mod = 0
+    my_number = float(my_number[:pos])
+    
+    var_result = '0.'
+    for i in range(ndigits-1):
+        var_result += '0'
+
+    var_result += str(mod)# число-модификатор
+    var_result = float(var_result) + my_number
+
+    return var_result
 
 
 print(my_round(2.1234567, 5))
@@ -20,8 +36,22 @@ print(my_round(2.9999967, 5))
 # !!!P.S.: функция не должна НИЧЕГО print'ить
 
 def lucky_ticket(ticket_number):
-    pass
-
+    my_tiket_number = str(ticket_number)
+ 
+    str_low  = my_tiket_number[:3]
+    str_hi = my_tiket_number[-3:]
+    
+    res_low = 0
+    res_hi = 0
+    for x in str_low:
+        res_low += int(x)
+    for x in str_hi:
+        res_hi += int(x)
+    
+    if res_low == res_hi:
+    	return 'Счастливый билет!'
+    else:
+    	return 'Билет не является счастливым'
 
 print(lucky_ticket(123006))
 print(lucky_ticket(12321))
